@@ -257,7 +257,7 @@ func main() {
 			},
 			API: APIInfo{
 				Endpoints: map[string]EndpointMeta{
-					"health":    {"/v2/health", "Service health check"},
+					"health":    {"/v2/health", "Service health check as sean"},
 					"greeting":  {"/v2/greeting", "Personalized greeting service"},
 					"accounts":  {"/v2/accounts", "Account management endpoints"},
 					"debug":     {"/v1/debug", "Request debugging utility"},
@@ -302,13 +302,13 @@ func main() {
 		_, _ = fmt.Fprint(w, "OK")
 	})
 
-	 mux.HandleFunc("/redirect", func(w http.ResponseWriter, r *http.Request) {
-      http.Redirect(w, r, "/api/v1", http.StatusFound) // 302
-  })
+	mux.HandleFunc("/redirect", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/api/v1", http.StatusFound) // 302
+	})
 
-  mux.HandleFunc("/moved", func(w http.ResponseWriter, r *http.Request) {
-      http.Redirect(w, r, "/api/v1", http.StatusMovedPermanently) // 301
-  })
+	mux.HandleFunc("/moved", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/api/v1", http.StatusMovedPermanently) // 301
+	})
 
 	mux.HandleFunc("/env", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/plain")
